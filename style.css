@@ -1,0 +1,1485 @@
+/* GLOBAL CSS VARIABLE REGISTRY */
+:root {
+    /* Main Layout Canvas Backgrounds */
+    --bg-dark-base: #0f172a;
+    /* Deep midnight canvas tint */
+    --bg-dark-surface: #1e293b;
+    /* Card panels and sidebar base */
+    --bg-dark-element: #334155;
+    /* Input tracks and nested frames */
+
+    /* Brand Accent Colors */
+    --clr-accent-primary: #38bdf8;
+    /* Electric neon cyan for primary triggers */
+    --clr-accent-success: #10b981;
+    /* Vivid emerald for cleared validation states */
+    --clr-accent-alert: #f59e0b;
+    /* Warm amber color for notifications/pop quizzes */
+    --clr-accent-danger: #ef4444;
+    /* Crimson red color for closing/stop alerts */
+
+    /* Typography Color Spectrum */
+    --txt-primary: #f8fafc;
+    /* High-contrast crisp white for headers */
+    --txt-secondary: #94a3b8;
+    /* Muted slate gray color for subheaders/captions */
+    --txt-disabled: #64748b;
+    /* Low-opacity text for disabled forms/elements */
+
+    /* Structural Framework Constants */
+    --app-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius-standard: 8px;
+    /* Smooth framing curvature */
+    --border-radius-pill: 24px;
+    /* Pill shape for chat badges/floating links */
+    --transition-speed-smooth: 0.3s;
+    /* Uniform UI easing motion speed */
+}
+
+/* BASE HTML RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark-base);
+    color: var(--txt-primary);
+    font-family: var(--app-font-family);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* CONTAINER & VIEWPORT LAYOUT WRAPPERS */
+#app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 16px;
+    gap: 16px;
+}
+
+/* THE THREE-COLUMN LAYOUT ENGINE */
+#layout-wrapper {
+    display: grid;
+    /* Grid Columns: Main Content (Fluid Flex) | Curriculum Sidebar (Fixed) */
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+    align-items: start;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* COMMUNITY SLIDEOUT WRAPPER MANAGEMENT */
+#community-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    max-width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-dark-surface);
+    border-left: 1px solid var(--bg-dark-element);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    transition: transform var(--transition-speed-smooth) ease-in-out;
+}
+
+/* Toggle Interaction States for Sidebar Class Utilities */
+#community-sidebar.closed {
+    transform: translateX(100%);
+}
+
+/* APPLICATION BANNER SYSTEM */
+#main-header {
+    display:flex;
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#main-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--clr-accent-primary);
+    letter-spacing: -0.5px;
+}
+
+#main-header p {
+    font-size: 1.1rem;
+    color: var(--txt-secondary);
+    max-width: 600px;
+}
+
+/* REALTIME CLOCK UTILITY BAR */
+#live-clock-bar {
+    background-color: var(--bg-dark-base);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-pill);
+    padding: 6px 16px;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-family: monospace;
+    margin-top: 4px;
+}
+
+#live-clock-bar span {
+    color: var(--txt-secondary);
+}
+
+#realtime-clock {
+    color: var(--clr-accent-alert);
+    font-weight: bold;
+}
+
+/* MAIN CONTENT PANEL WRAPPER */
+#content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 0;
+}
+
+/* RESPONSIVE VIDEO LAYER (Maintains 16:9 Aspect Ratio) */
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    border-radius: var(--border-radius-standard);
+    overflow: hidden;
+    border: 1px solid var(--bg-dark-element);
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* DYNAMIC LESSON CONTAINER */
+#dynamic-lesson-display {
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#lesson-title {
+    font-size: 1.5rem;
+    color: var(--clr-accent-primary);
+    border-bottom: 2px solid var(--bg-dark-element);
+    padding-bottom: 12px;
+}
+
+#lesson-documentation {
+    color: var(--txt-primary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* PROGRESS VERIFICATION WORKFLOW FIELDSET */
+#progress-verification {
+    border: 1px dashed var(--clr-accent-primary);
+    border-radius: var(--border-radius-standard);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: rgba(56, 189, 248, 0.03);
+}
+
+#progress-verification legend {
+    color: var(--clr-accent-primary);
+    padding: 0 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#progress-verification label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#progress-verification input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--clr-accent-success);
+    cursor: pointer;
+}
+
+/* LOCKED / UNLOCKED PRACTICAL APPLICATION CHALLENGE TASK */
+#lesson-task-assignment {
+    background-color: var(--bg-dark-base);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all var(--transition-speed-smooth) ease;
+}
+
+/* State Management Styles for Dynamic Tasks */
+.task-locked {
+    opacity: 0.5;
+    pointer-events: none;
+    border-left: 4px solid var(--txt-disabled);
+}
+
+.task-unlocked {
+    opacity: 1;
+    pointer-events: auto;
+    border-left: 4px solid var(--clr-accent-success);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
+}
+
+#lesson-task-assignment h3 {
+    font-size: 1.2rem;
+    color: var(--txt-primary);
+}
+
+#task-submission-input {
+    width: 100%;
+    height: 100px;
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    color: var(--txt-primary);
+    padding: 12px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+#task-submission-input:focus {
+    outline: none;
+    border-color: var(--clr-accent-primary);
+}
+
+#btn-submit-task {
+    background-color: var(--clr-accent-success);
+    color: var(--bg-dark-base);
+    border: none;
+    border-radius: var(--border-radius-standard);
+    padding: 12px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color var(--transition-speed-smooth) ease;
+}
+
+#btn-submit-task:disabled {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-disabled);
+    cursor: not-allowed;
+}
+
+/* CURRICULUM SIDEBAR CONTAINER */
+#curriculum-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* AI STUDY ASSISTANT WIDGET CARD */
+#ai-reminder-widget {
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ai-widget-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--bg-dark-element);
+    padding-bottom: 10px;
+}
+
+.ai-avatar-icon {
+    font-size: 1.5rem;
+}
+
+.ai-widget-header h3 {
+    font-size: 1.15rem;
+    color: var(--txt-primary);
+}
+
+/* TRACKING STATUS TEXT PANELS */
+.ai-status-panel {
+    background-color: var(--bg-dark-base);
+    padding: 12px;
+    border-radius: var(--border-radius-standard);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ai-status-panel strong {
+    color: var(--clr-accent-alert);
+}
+
+/* RECONFIGURABLE TIMERS GRID LAYOUT */
+.ai-timer-settings {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.ai-timer-settings label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--txt-secondary);
+}
+
+.ai-timer-settings input[type="number"] {
+    background-color: var(--bg-dark-base);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    color: var(--txt-primary);
+    padding: 8px;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.ai-timer-settings input[type="number"]:focus {
+    outline: none;
+    border-color: var(--clr-accent-primary);
+}
+
+.ai-audio-controls label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--txt-primary);
+    cursor: pointer;
+}
+
+/* INTERACTIVE CURRICULUM SYLLABUS LISTS */
+#curriculum-navigation {
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 20px;
+}
+
+#curriculum-navigation h3 {
+    font-size: 1.2rem;
+    color: var(--txt-primary);
+    margin-bottom: 4px;
+}
+
+.curriculum-instruction {
+    font-size: 0.85rem;
+    color: var(--txt-secondary);
+    margin-bottom: 16px;
+}
+
+/* ACCORDION MODULE STRUCTURES */
+.curriculum-module {
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    margin-bottom: 10px;
+    background-color: var(--bg-dark-base);
+    overflow: hidden;
+    transition: all var(--transition-speed-smooth) ease;
+}
+
+/* Interactive Folder Summary Bars */
+.module-title {
+    padding: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--txt-primary);
+    cursor: pointer;
+    user-select: none;
+    background-color: rgba(51, 65, 85, 0.3);
+    transition: background-color var(--transition-speed-smooth);
+}
+
+.module-title:hover {
+    background-color: var(--bg-dark-element);
+    color: var(--clr-accent-primary);
+}
+
+/* Embedded Lists for Lessons */
+.curriculum-list {
+    list-style: none;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background-color: var(--bg-dark-surface);
+}
+
+/* Button Lesson Link Styling */
+.lesson-link {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--txt-secondary);
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: calc(var(--border-radius-standard) - 2px);
+    transition: all var(--transition-speed-smooth) ease;
+}
+
+.lesson-link:hover {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-primary);
+    padding-left: 16px;
+    /* Interactive indent nudge */
+}
+
+/* Highlight Active / Clicked Lesson States */
+.lesson-link.active-lesson {
+    background-color: rgba(56, 189, 248, 0.1);
+    color: var(--clr-accent-primary);
+    font-weight: 600;
+    border-left: 3px solid var(--clr-accent-primary);
+}
+
+
+/* ==========================================================================
+   3. COMMUNITY SIDEBAR & FLOATING CHAT COMPONENT REGISTRY
+   ========================================================================== */
+
+/* CONTAINER STRUCTURAL HEADER OVERLAYS */
+.community-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--bg-dark-element);
+    background-color: var(--bg-dark-base);
+}
+
+.community-header h3 {
+    font-size: 1.2rem;
+    color: var(--clr-accent-primary);
+}
+
+#btn-close-community {
+    background: none;
+    border: none;
+    color: var(--txt-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color var(--transition-speed-smooth);
+}
+
+#btn-close-community:hover {
+    color: var(--clr-accent-danger);
+}
+
+/* FEED COMPOSER FORM LAYOUT */
+#community-feed-composer {
+    padding: 20px;
+    border-bottom: 1px solid var(--bg-dark-element);
+    background-color: rgba(30, 41, 59, 0.5);
+}
+
+#community-feed-composer h4 {
+    font-size: 0.95rem;
+    color: var(--txt-primary);
+    margin-bottom: 10px;
+}
+
+#txt-post-content {
+    width: 100%;
+    height: 80px;
+    background-color: var(--bg-dark-base);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    color: var(--txt-primary);
+    padding: 10px;
+    font-family: inherit;
+    resize: none;
+    font-size: 0.9rem;
+}
+
+/* MEDIA UPLOAD FLEX BOX ROUTINES */
+.media-upload-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0;
+}
+
+.lbl-upload {
+    font-size: 0.8rem;
+    color: var(--clr-accent-primary);
+    cursor: pointer;
+    display: inline-block;
+}
+
+.lbl-upload input[type="file"] {
+    display: none;
+    /* Hide default native browser button layout safely */
+}
+
+.btn-audio-rec {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-primary);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color var(--transition-speed-smooth);
+}
+
+.btn-audio-rec:hover {
+    background-color: var(--bg-dark-base);
+    border-color: var(--clr-accent-alert);
+}
+
+/* AUDIO MIC RECORDING FEEDBACK STATE LAYERS */
+.audio-status-idle {
+    font-size: 0.75rem;
+    color: var(--txt-secondary);
+}
+
+.audio-status-recording {
+    font-size: 0.75rem;
+    color: var(--clr-accent-danger);
+    font-weight: bold;
+    animation: pulse-recording 1.5s infinite;
+}
+
+@keyframes pulse-recording {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+#btn-submit-post {
+    width: 100%;
+    background-color: var(--clr-accent-primary);
+    color: var(--bg-dark-base);
+    border: none;
+    border-radius: var(--border-radius-standard);
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* DYNAMIC COMMUNITY FORUM FEED CARDS */
+#community-discussion-feed {
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 290px);
+    /* Fill standard frame minus upper headers */
+}
+
+#community-discussion-feed h4 {
+    font-size: 0.95rem;
+    color: var(--txt-secondary);
+    margin-bottom: 12px;
+}
+
+.forum-card {
+    background-color: var(--bg-dark-base);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 14px;
+    margin-bottom: 16px;
+}
+
+.forum-card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+}
+
+.forum-card-meta strong {
+    color: var(--clr-accent-primary);
+}
+
+.forum-card-meta time {
+    color: var(--txt-disabled);
+}
+
+.forum-card-text {
+    font-size: 0.9rem;
+    color: var(--txt-primary);
+    margin-bottom: 10px;
+}
+
+/* DETACHED WORKSPACE IMAGE PREVIEWS */
+.forum-uploaded-media {
+    width: 100%;
+    max-height: 180px;
+    border-radius: var(--border-radius-standard);
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid var(--bg-dark-element);
+}
+
+.forum-attached-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* COMMENTS SYSTEM LAYOUT TREE */
+.forum-card-comments {
+    border-top: 1px solid var(--bg-dark-element);
+    padding-top: 10px;
+}
+
+.forum-card-comments h5 {
+    font-size: 0.8rem;
+    color: var(--txt-secondary);
+    margin-bottom: 6px;
+}
+
+.comment-item {
+    font-size: 0.8rem;
+    color: var(--txt-primary);
+    background-color: var(--bg-dark-surface);
+    padding: 6px 10px;
+    border-radius: var(--border-radius-standard);
+    margin-bottom: 8px;
+}
+
+.comment-item strong {
+    color: var(--clr-accent-alert);
+}
+
+/* NESTED RESPONSE FORM OBJECTS */
+.frm-add-comment {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.frm-add-comment input {
+    flex: 1;
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    color: var(--txt-primary);
+    padding: 4px 8px;
+    font-size: 0.75rem;
+}
+
+.btn-voice-comment {
+    background: none;
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    cursor: pointer;
+    padding: 0 6px;
+}
+
+.frm-add-comment button[type="submit"] {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-primary);
+    border: none;
+    border-radius: var(--border-radius-standard);
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   4. FLOATING PRIVATE CHAT ENGINE MODAL
+   ========================================================================== */
+#floating-chat-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+/* MAIN FLOATING SPHERE TRIGGER BUTTON */
+#floating-chat-trigger {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--clr-accent-primary);
+    border: none;
+    color: var(--bg-dark-base);
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-speed-smooth) ease;
+}
+
+#floating-chat-trigger:hover {
+    transform: scale(1.08);
+}
+
+#unread-chat-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: var(--clr-accent-danger);
+    color: var(--txt-primary);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: var(--border-radius-pill);
+    border: 2px solid var(--bg-dark-base);
+}
+
+/* CONTEXT CHAT WINDOW PANEL PACKS */
+#private-chat-window {
+    width: 320px;
+    height: 400px;
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform var(--transition-speed-smooth) cubic-bezier(0.4, 0, 0.2, 1),
+        opacity var(--transition-speed-smooth) ease;
+}
+
+/* Minimized State Handling Utilities */
+.chat-minimized {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    display: none !important;
+    /* Forces layout detachment until active toggles pull it */
+}
+
+#private-chat-header {
+    background-color: var(--bg-dark-base);
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-dark-element);
+}
+
+#private-chat-header h4 {
+    font-size: 0.9rem;
+    color: var(--txt-primary);
+}
+
+#btn-minimize-chat {
+    background: none;
+    border: none;
+    color: var(--txt-secondary);
+    cursor: pointer;
+}
+
+#private-chat-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(15, 23, 42, 0.2);
+}
+
+.msg {
+    max-width: 85%;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-standard);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.msg-received {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-primary);
+    align-self: flex-start;
+}
+
+.msg-sender {
+    display: block;
+    font-weight: bold;
+    color: var(--clr-accent-alert);
+    margin-bottom: 2px;
+}
+
+#private-chat-footer {
+    padding: 10px;
+    background-color: var(--bg-dark-base);
+    border-top: 1px solid var(--bg-dark-element);
+}
+
+#frm-private-message {
+    display: flex;
+    gap: 6px;
+}
+
+#txt-dm-input {
+    flex: 1;
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    color: var(--txt-primary);
+    padding: 6px 10px;
+    font-size: 0.8rem;
+}
+
+#txt-dm-input:focus {
+    outline: none;
+    border-color: var(--clr-accent-primary);
+}
+
+#btn-record-dm-audio {
+    background: none;
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    color: var(--txt-primary);
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+#btn-send-dm {
+    background-color: var(--clr-accent-primary);
+    color: var(--bg-dark-base);
+    border: none;
+    border-radius: var(--border-radius-standard);
+    padding: 0 12px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   5. PRACTICAL APPLICATION OVERLAY MODAL SYSTEM
+   ========================================================================== */
+#task-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.85);
+    /* Frosty dark backdrop tint */
+    backdrop-filter: blur(8px);
+    /* Blurs out the app workspace underneath */
+    z-index: 200;
+    /* Keeps it above sidebar navigations and chats */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    transition: opacity var(--transition-speed-smooth) ease;
+}
+
+/* Visibility State Management Utilities */
+.modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none !important;
+}
+
+#task-modal-content {
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--clr-accent-primary);
+    border-radius: var(--border-radius-standard);
+    width: 100%;
+    max-width: 800px;
+    /* Wide-page orientation layout */
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    animation: modal-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-slide-up {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#task-modal-header {
+    background-color: var(--bg-dark-base);
+    padding: 20px;
+    border-bottom: 1px solid var(--bg-dark-element);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#task-modal-header h2 {
+    font-size: 1.4rem;
+    color: var(--clr-accent-primary);
+}
+
+.difficulty-tag {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--clr-accent-alert);
+    border: 1px solid var(--clr-accent-alert);
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: var(--border-radius-pill);
+}
+
+#task-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--txt-primary);
+}
+
+#task-modal-footer {
+    padding: 16px 24px;
+    background-color: var(--bg-dark-base);
+    border-top: 1px solid var(--bg-dark-element);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-hint {
+    font-size: 0.8rem;
+    color: var(--txt-secondary);
+    max-width: 60%;
+}
+
+#btn-close-task-modal {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-primary);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed-smooth) ease;
+}
+
+#btn-close-task-modal:hover {
+    background-color: var(--clr-accent-danger);
+    border-color: var(--clr-accent-danger);
+    color: var(--txt-primary);
+}
+
+/* ==========================================================================
+   6. VIBE CODING SANDBOX INTEGRATION
+   ========================================================================== */
+#code-sandbox-workbench {
+    background-color: var(--bg-dark-base);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: var(--border-radius-standard);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sandbox-header {
+    background-color: var(--bg-dark-surface);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-dark-element);
+}
+
+.sandbox-header h4 {
+    font-size: 0.85rem;
+    color: var(--txt-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sandbox-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.sandbox-actions button {
+    border: none;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed-smooth);
+}
+
+#btn-run-sandbox {
+    background-color: var(--clr-accent-primary);
+    color: var(--bg-dark-base);
+}
+
+#btn-run-sandbox:hover {
+    background-color: var(--clr-accent-success);
+}
+
+#btn-clear-sandbox {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-secondary);
+}
+
+#btn-clear-sandbox:hover {
+    background-color: var(--clr-accent-danger);
+    color: var(--txt-primary);
+}
+
+/* WORKBENCH FLEXIBLE COLUMN TREE */
+.sandbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Side-by-side execution on desktop */
+    min-height: 180px;
+}
+
+.sandbox-panel-editor {
+    border-right: 1px solid var(--bg-dark-element);
+}
+
+#txt-sandbox-editor {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    background-color: #090d16;
+    /* Pitch dark terminal core */
+    border: none;
+    color: #38bdf8;
+    /* Coding terminal blue typography tint */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 12px;
+    font-size: 0.85rem;
+    resize: none;
+    outline: none;
+}
+
+
+
+.sandbox-panel-output {
+    background-color: #020617;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.output-title {
+    font-size: 0.75rem;
+    color: var(--txt-disabled);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#pre-sandbox-console {
+    color: var(--txt-secondary);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow-y: auto;
+}
+
+/* ==========================================================================
+   7. GLASSMORPHIC AUTHENTICATION PORTAL & PROGRESS TRACKS
+   ========================================================================== */
+#main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.header-left-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#auth-portal-wrapper {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius-standard);
+    padding: 16px;
+    width: 320px;
+    max-width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-speed-smooth) ease;
+}
+
+.auth-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+#auth-portal-wrapper input {
+    width: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--bg-dark-element);
+    border-radius: 4px;
+    color: var(--txt-primary);
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+#auth-portal-wrapper input:focus {
+    border-color: var(--clr-accent-primary);
+}
+
+.auth-action-row {
+    display: flex;
+    gap: 8px;
+}
+
+.auth-action-row button {
+    flex: 1;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color var(--transition-speed-smooth);
+}
+
+#btn-action-login {
+    background-color: var(--clr-accent-primary);
+    color: var(--bg-dark-base);
+}
+
+#btn-action-register {
+    background-color: var(--bg-dark-element);
+    color: var(--txt-primary);
+}
+
+/* User Profile Badge State UI Elements */
+#auth-profile-badge {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#auth-profile-badge p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--clr-accent-primary);
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background-color: var(--bg-dark-base);
+    border-radius: var(--border-radius-pill);
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+#progress-bar-fill {
+    height: 100%;
+    background-color: var(--clr-accent-success);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#lbl-progress-metrics {
+    font-size: 0.75rem;
+    color: var(--txt-secondary);
+}
+
+#btn-action-logout {
+    align-self: flex-end;
+    background: none;
+    border: 1px solid var(--clr-accent-danger);
+    color: var(--clr-accent-danger);
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+#btn-action-logout:hover {
+    background-color: var(--clr-accent-danger);
+    color: var(--txt-primary);
+}
+
+.auth-alert-hidden,
+.auth-profile-hidden {
+    display: none !important;
+}
+
+#auth-error-msg {
+    font-size: 0.75rem;
+    color: var(--clr-accent-danger);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* EXPANDED AUTH FIELD LAYOUT SCHEMATICS */
+.auth-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.auth-remember-row {
+    margin: 8px 0 12px 0;
+    display: flex;
+    align-items: center;
+}
+
+.auth-remember-row label {
+    font-size: 0.75rem;
+    color: var(--txt-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.auth-remember-row input[type="checkbox"] {
+    width: 13px !important;
+    height: 13px !important;
+    accent-color: var(--clr-accent-primary);
+    cursor: pointer;
+}
+
+/* REGISTRATION DRAWER TRANSITION UTILITIES */
+.auth-registration-fields {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-speed-smooth) cubic-bezier(0.4, 0, 0.2, 1),
+        opacity var(--transition-speed-smooth) ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Toggle expansion class utility triggered via JS */
+.auth-expanded .auth-registration-fields {
+    max-height: 300px;
+    /* Expands to fit fields comfortably */
+    opacity: 1;
+    margin-bottom: 6px;
+}
+
+
+
+
+
+/* ==========================================================================
+   UPDATED RESPONSIVENESS SYSTEM (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Laptop / Small Monitor Scaling (1200px) */
+@media (max-width: 1200px) {
+    #layout-wrapper {
+        grid-template-columns: 1fr 300px;
+        gap: 16px;
+    }
+
+    #community-sidebar {
+        width: 340px;
+    }
+}
+
+/* Tablet Screens & Small Monitiors Layout Modification (900px) */
+@media (max-width: 900px) {
+    #layout-wrapper {
+        grid-template-columns: 1fr;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #curriculum-sidebar {
+        order: 2;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    #content-area {
+        width: 100% !important;
+        max-width: 100% !important;
+        order: 1;
+    }
+
+    #main-header {
+        flex-direction: column;
+        /* Stack Title and Login panel vertically */
+        align-items: stretch;
+    }
+
+    #auth-portal-wrapper {
+        width: 100%;
+        /* Expand login panel to look cohesive on tablet stacks */
+    }
+}
+
+/* Code Sandbox Adjustments (768px) */
+@media (max-width: 768px) {
+    .sandbox-grid {
+        grid-template-columns: 1fr;
+        /* Stack code pane vertically above console log outputs */
+    }
+
+    .sandbox-panel-editor {
+        border-right: none;
+        border-bottom: 1px solid var(--bg-dark-element);
+        /* Switch border orientation for stacked panels */
+    }
+}
+
+/* Mobile Screens Optimization (600px and below) */
+@media (max-width: 600px) {
+    #main-header {
+        padding: 16px;
+        text-align: center;
+    }
+
+    #main-header h1 {
+        font-size: 1.6rem;
+    }
+
+    #main-header p {
+        font-size: 0.95rem;
+    }
+
+    #live-clock-bar {
+        align-self: center;
+        /* Center align the running clock */
+    }
+
+    #dynamic-lesson-display {
+        padding: 16px;
+    }
+
+    #lesson-title {
+        font-size: 1.25rem;
+    }
+
+    #task-modal-content {
+        max-height: 95vh;
+        width: 95%;
+        /* Give modal spacing from mobile screen edges */
+    }
+
+    #task-modal-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .modal-hint {
+        max-width: 100%;
+    }
+
+    #btn-close-task-modal {
+        width: 100%;
+    }
+
+    /* Interactive DM Window Mobile Scaling Fix */
+    #private-chat-window {
+        width: calc(100vw - 48px);
+        /* Restricts chat frame from bleeding off-screen */
+        right: 0;
+    }
+}
+
+/* Small Handheld Smart Phones (480px and below) */
+@media (max-width: 480px) {
+    #app-container {
+        padding: 8px;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    #community-sidebar {
+        width: 100vw;
+        /* Converts community feed to a clean full-screen overlay for phones */
+    }
+
+    .sandbox-header {
+        flex-direction: column;
+        /* Stack sandbox action buttons cleanly */
+        gap: 8px;
+        text-align: center;
+    }
+
+    .sandbox-actions {
+        width: 100%;
+    }
+
+    .sandbox-actions button {
+        flex: 1;
+        /* Stretch Run and Clear buttons evenly */
+    }
+
+    #dynamic-lesson-display {
+        padding: 12px;
+        width: 100% !important;
+    }
+}
