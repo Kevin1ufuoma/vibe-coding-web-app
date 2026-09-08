@@ -1476,4 +1476,8 @@ body {
         flex: 1;
         /* Stretch Run and Clear buttons evenly */
     }
+    #dynamic-lesson-display {
+        padding: 12px;
+        width: 100% !important;
+    }
 }
