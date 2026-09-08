@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="KEVIN" content="BIZWITHWILL">
+    <meta name="AI Learning" content="An educational platform to learn software development using AI.">
+    <title>Vibe Coding App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app-container">
+
+        <header id="main-header">
+            <div class="header-left-group">
+                <h1>Vibe Coding App</h1>
+                <p>Learn how to develop global impact softwares using AI</p>
+                
+                <div id="live-clock-bar">
+                    <span>Current Time: </span>
+                    <time id="realtime-clock" datetime="2026-08-07T15:30">Loading live tracking...</time>
+                </div>
+            </div>
+
+            <div id="auth-portal-wrapper">
+            
+                <form id="frm-auth-gateway" onsubmit="return false;">
+                    <div id="auth-error-msg" class="auth-alert-hidden"></div>
+                
+                    <div class="auth-registration-fields">
+                        <input type="text" id="txt-auth-name" placeholder="Full Name" autocomplete="name">
+                        <input type="email" id="txt-auth-email" placeholder="Email Address" autocomplete="email">
+                    </div>
+                
+                
+                    <div class="auth-input-group">
+                        <input type="text" id="txt-auth-user" placeholder="Username" required autocomplete="username">
+                        <input type="password" id="txt-auth-pass" placeholder="Password" required autocomplete="current-password">
+                    </div>
+                
+                    <div class="auth-registration-fields">
+                        <input type="password" id="txt-auth-confirm" placeholder="Confirm Password" autocomplete="new-password">
+                    </div>
+                
+                    <div class="auth-remember-row">
+                        <label for="chk-auth-remember">
+                            <input type="checkbox" id="chk-auth-remember" checked>
+                            Remember my session data on this device
+                        </label>
+                    </div>
+                
+                    <div class="auth-action-row">
+                        <button type="button" id="btn-action-login">Sign In</button>
+                        <button type="button" id="btn-action-register">Register Account</button>
+                    </div>
+                </form>
+
+            
+                <div id="auth-profile-badge" class="auth-profile-hidden">
+                    <p>Welcome back, <span id="lbl-active-user">Developer</span>! 👋</p>
+                    <div class="progress-bar-track">
+                        <div id="progress-bar-fill" style="width: 0%;"></div>
+                    </div>
+                    <small id="lbl-progress-metrics">Progress: 0% Complete</small>
+                    <button type="button" id="btn-action-logout">Sign Out</button>
+                </div>
+            </div>
+
+        </header>
+
+
+        <div id="layout-wrapper">
+            <main id="content-area">
+
+                <section id="intro-video-wrapper">
+                    <h3>Course Introduction & Onboarding</h3>
+                    <div class="video-container">
+                        <video id="main-video-player" controls poster="images/video-placeholder.jpg">
+                            <source src="videos/intro.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </section>
+
+                <section id="dynamic-lesson-display" class="hidden-lesson">
+                    <h2 id="lesson-title">Select a topic from the curriculum to begin learning</h2>
+
+                    <article id="lesson-documentation">
+                        <p>Detailed documentation, logic walkthroughs, and conceptual explanations will render here
+                            dynamically.</p>
+                    </article>
+
+                    <div id="lesson-sub-video">
+                        <h4>Topic Deep-Dive Video</h4>
+                        <div class="video-container">
+                            <video id="topic-video-player" controls>
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <fieldset id="progress-verification">
+                        <legend>Lesson Verification</legend>
+                        <label for="chk-video-watched">
+                            <input type="checkbox" id="chk-video-watched">
+                            I have completely watched the deep-dive video
+                        </label>
+                        <label for="chk-docs-read">
+                            <input type="checkbox" id="chkprovided documentation-docs-read">
+                            I have thoroughly reviewed the class
+                        </label>
+                    </fieldset> 
+
+                    <section id="code-sandbox-workbench">
+                        <div class="sandbox-header">
+                            <h4>🛠️ Sandbox Code Playground</h4>
+                            <div class="sandbox-actions">
+                                <button type="button" id="btn-run-sandbox" title="Execute script block">▶ Run Code</button>
+                                <button type="button" id="btn-clear-sandbox" title="Clear canvas text">Clear</button>
+                            </div>
+                        </div>
+                    
+                        <div class="sandbox-grid">
+                            <div class="sandbox-panel-editor">
+                                <label for="txt-sandbox-editor" class="sr-only">Code Input:</label>
+                                <textarea id="txt-sandbox-editor" spellcheck="false"
+                                    placeholder="/* Paste your vibe-coded script here... */&#10;console.log('Welcome to Vibe Coding!');"></textarea>
+                            </div>
+                    
+                            <div class="sandbox-panel-output">
+                                <div class="output-title">Console Output:</div>
+                                <pre id="pre-sandbox-console">Output logs will render here in real time...</pre>
+                            </div>
+                        </div>
+                    </section>                              
+                    <section id="lesson-task-assignment" class="task-locked">
+                        <h3>🏆 Practical Application Task</h3>
+                        <p id="task-description">Complete the requirements above to unlock your development challenge
+                            for this topic.</p>
+                        <textarea id="task-submission-input"
+                            placeholder="Paste your vibe-coded solution or script repository link here..."
+                            disabled></textarea>
+                        <button id="btn-submit-task" disabled>Submit Task & Advance</button>
+                    </section>
+
+                </section>
+
+            </main>
+
+            <aside id="curriculum-sidebar">
+
+                <section id="ai-reminder-widget">
+                    <div class="ai-widget-header">
+                        <span class="ai-avatar-icon">🤖</span>
+                        <h3>AI Study Assistant</h3>
+                    </div>
+
+                    <div class="ai-status-panel">
+                        <p id="ai-tracking-status">Status: <strong>Monitoring Activity...</strong></p>
+                        <p id="ai-next-action">Next Action: <strong>Pop Quiz scheduling in progress</strong></p>
+                    </div>
+
+                    <div class="ai-audio-controls">
+                        <label for="chk-ai-audio">
+                            <input type="checkbox" id="chk-ai-audio" checked>
+                            Enable AI Audio Voice Notifications
+                        </label>
+                    </div>
+
+                    <div class="ai-timer-settings">
+                        <label for="num-lesson-time">
+                            Study Session (mins):
+                            <input type="number" id="num-lesson-time" value="45" min="5" max="120">
+                        </label>
+                        <label for="num-break-time">
+                            Break Interval (mins):
+                            <input type="number" id="num-break-time" value="15" min="5" max="60">
+                        </label>
+                    </div>
+                </section>
+
+                <nav id="curriculum-navigation">
+                    <h3>Course Curriculum</h3>
+                    <p class="curriculum-instruction">Select a topic below to view syllabus contents:</p>
+
+                    <details class="curriculum-module">
+                        <summary class="module-title">1. HTML Structure for AI Parsing</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="html-semantics">Semantic Layout
+                                    Architecture</button></li>
+                            <li><button type="button" class="lesson-link" data-topic="html-forms">Input Handlers & Data
+                                    Attr</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: CSS -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">2. Responsive CSS Layouts</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="css-grid">Flexbox & Grid
+                                    Systems</button></li>
+                            <li><button type="button" class="lesson-link" data-topic="css-media">Mobile Fluid
+                                    Breakpoints</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: JS -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">3. JavaScript Logical Core</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="js-dom">DOM Manipulation
+                                    Logic</button></li>
+                            <li><button type="button" class="lesson-link" data-topic="js-async">Asynchronous Data
+                                    Fetching</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: JQUERY -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">4. jQuery Interaction Layer</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="jq-effects">Event Handling &
+                                    Shorthands</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: PYTHON -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">5. Python Backend Foundations</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="py-logic">Data Structures & Logic
+                                    Blocks</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: NODEJS -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">6. Node.js Production Servers</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="node-api">REST APIs & Server
+                                    Scripting</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: PROMPT ENGINEERING (Added Topic 1) -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">7. AI Prompt Engineering for Code</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="ai-prompts">Context-Stuffing &
+                                    System Prompts</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: GIT WITH AI (Added Topic 2) -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">8. Git & Version Control with AI</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="git-ai">Automated Commits & Code
+                                    Reviews</button></li>
+                        </ul>
+                    </details>
+
+                    <!-- LESSON BLOCK: DEPLOYMENT (Added Topic 3) -->
+                    <details class="curriculum-module">
+                        <summary class="module-title">9. Global Deployment Pipelines</summary>
+                        <ul class="curriculum-list">
+                            <li><button type="button" class="lesson-link" data-topic="deploy-live">Vercel & Production
+                                    Management</button></li>
+                        </ul>
+                    </details>
+
+                </nav>
+            </aside>
+
+            <!-- 3. SLIDEOUT COMMUNITY SECTION (Togglable Forum & Chats) -->
+            <aside id="community-sidebar" class="closed">
+
+                <!-- COMMUNITY SECTION HEADER WITH CLOSE TOGGLE -->
+                <div class="community-header">
+                    <h3>👥 Global Learner Hub</h3>
+                    <button id="btn-close-community" type="button" aria-label="Close community panel">✕</button>
+                </div>
+
+                <!-- POST CREATION FORM (Text, Audio, & Image Upload) -->
+                <section id="community-feed-composer">
+                    <h4>Share a Vibe Coding Update</h4>
+                    <form id="frm-community-post" onsubmit="return false;">
+                        <textarea id="txt-post-content"
+                            placeholder="Stuck on an AI logic bug? Share your progress or challenge..."></textarea>
+
+                        <!-- Rich media control field links -->
+                        <div class="media-upload-options">
+                            <label for="file-post-image" class="lbl-upload">
+                                🖼️ Upload Screen (PNG/JPG)
+                                <input type="file" id="file-post-image" accept="image/*">
+                            </label>
+
+                            <!-- Audio voice messaging node -->
+                            <button type="button" id="btn-record-community-audio" class="btn-audio-rec">🎙️ Record Voice
+                                Update</button>
+                            <span id="community-audio-status" class="audio-status-idle">Mic Ready</span>
+                        </div>
+
+                        <button type="submit" id="btn-submit-post">Publish to Topic Feed</button>
+                    </form>
+                </section>
+
+                <!-- DYNAMIC COMMUNITY FORUM FEED -->
+                <section id="community-discussion-feed">
+                    <h4>Active Topic Thread</h4>
+
+                    <!-- Example Forum Card Container -->
+                    <article class="forum-card">
+                        <header class="forum-card-meta">
+                            <strong>@vibeDev42</strong>
+                            <time datetime="2026-08-07T12:45">Just now</time>
+                        </header>
+                        <p class="forum-card-text">Managed to generate the server router structure using the prompt
+                            blueprint from lesson 7! Check my screenshot structure below.</p>
+
+                        <!-- Shared Student Screenshot Image -->
+                        <div class="forum-uploaded-media">
+                            <img src="images/student-code-sample.jpg" alt="User submitted code layout screenshot"
+                                class="forum-attached-img">
+                        </div>
+
+                        <!-- Global Comments Container Grid -->
+                        <section class="forum-card-comments">
+                            <h5>Comments (1)</h5>
+                            <div class="comment-item">
+                                <strong>@ai_coder_pro:</strong> Clean routing workflow! Did the system build your error
+                                handlers automatically too?
+                            </div>
+                            <form class="frm-add-comment" onsubmit="return false;">
+                                <input type="text" placeholder="Write a comment reply..." aria-label="Comment content">
+                                <button type="button" class="btn-voice-comment"
+                                    title="Record comment voice note">🎙️</button>
+                                <button type="submit">Reply</button>
+                            </form>
+                        </section>
+                    </article>
+                </section>
+            </aside>
+
+        </div>
+
+    </div>
+
+    <!-- FLOATING PRIVATE CHAT ICON -->
+    <div id="floating-chat-container">
+        <button id="floating-chat-trigger" type="button" title="Open Private Chat Messages">
+            💬 <span id="unread-chat-badge">2</span>
+        </button>
+
+        <!-- PRIVATE DIRECT MESSAGE MODULE (Hidden by default) -->
+        <section id="private-chat-window" class="chat-minimized">
+            <header id="private-chat-header">
+                <h4>Direct Messages</h4>
+                <button id="btn-minimize-chat" type="button">━</button>
+            </header>
+
+            <!-- Chat Message Logs -->
+            <div id="private-chat-messages">
+                <div class="msg msg-received">
+                    <span class="msg-sender">@mentor_ai:</span> Hey! I saw your workspace task submission. Let me know
+                    if you need help debugging the JavaScript loops!
+                </div>
+            </div>
+
+            <!-- Input Interface (With text and voice controls) -->
+            <footer id="private-chat-footer">
+                <form id="frm-private-message" onsubmit="return false;">
+                    <input type="text" id="txt-dm-input" placeholder="Type private message...">
+                    <button type="button" id="btn-record-dm-audio" title="Record audio message">🎙️</button>
+                    <button type="submit" id="btn-send-dm">Send</button>
+                </form>
+            </footer>
+        </section>
+    </div>
+
+    <!-- FULL SCREEN POPUP OVERLAY FOR UNLOCKED TASKS -->
+    <div id="task-modal-overlay" class="modal-hidden" aria-hidden="true">
+        <div id="task-modal-content">
+            <header id="task-modal-header">
+                <h2>🎯 Practical Application Challenge</h2>
+                <span class="difficulty-tag">Production Build Task</span>
+            </header>
+    
+            <!-- Dynamic Content Slot -->
+            <article id="task-modal-body">
+                <!-- Task instructions and prompt specifications will load here via JS -->
+                <p>Loading course assignment details...</p>
+            </article>
+    
+            <footer id="task-modal-footer">
+                <p class="modal-hint">Review the structural logic guidelines above before writing your solution script.</p>
+                <button id="btn-close-task-modal" type="button">Close & Return to Workspace</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js" charset="utf-8"></script>
+</body>
+
+</html>
